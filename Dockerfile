@@ -9,7 +9,6 @@ RUN dotnet publish "./ClockWebsocket.csproj" -c release -o /app --no-restore
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
 WORKDIR /app
 COPY --from=build /app ./
-
-EXPOSE 5209
+ENV ASPNETCORE_URLS=http://0.0.0.0:80
 
 ENTRYPOINT ["dotnet", "ClockWebsocket.dll"]
